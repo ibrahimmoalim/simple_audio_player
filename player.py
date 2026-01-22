@@ -22,7 +22,7 @@ class MainWindow(QMainWindow):
         self.play = QPushButton("Play", self)
         self.is_paused = False
         self.skip = QPushButton("Skip", self)
-        self.textbox = QLineEdit(self)
+        self.textbox = QLineEdit("/home/ibrahim/audio/", self)
         self.error_text = QLabel("")
         # create a timer to periodically check if the current audio has finished,
         # so we can automatically play the next track without blocking the GUI
@@ -101,6 +101,7 @@ class MainWindow(QMainWindow):
         except Exception as e:
             self.error_text.setText(str(e))
 
+
     def play_next(self):
         if self.index >= len(self.audio_files):
             return
@@ -120,6 +121,7 @@ class MainWindow(QMainWindow):
         
         if not pygame.mixer.music.get_busy():
             self.play_next()
+            
     
     def skip_audio(self):
         if pygame.mixer.music.get_busy():
