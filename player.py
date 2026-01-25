@@ -5,9 +5,11 @@ import os
 import pygame
 import sys
 
+from tkinter import filedialog
+
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget, QLabel,
-                             QGridLayout, QPushButton, QLineEdit)
-from PyQt5.QtGui import QIcon, QFont, QPixmap
+                             QGridLayout, QPushButton)
+from PyQt5.QtGui import QIcon
 # Always use QTimer instead of importing 'time' module for GUI
 # using 'time.sleep()' makes the GUI freeze, buttons stop responding, windows stop repainting, etc.
 from PyQt5.QtCore import Qt, QTimer
@@ -18,11 +20,14 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.setWindowTitle('audioplayer')
         self.setGeometry(700, 300, 600, 500)
-        self.setWindowIcon(QIcon('/home/ibrahim/audioplayer/app_icon.png'))
+        self.setWindowIcon(QIcon('app_icon.png'))
+        self.folder_path = ""
         self.play = QPushButton("Play", self)
         self.is_paused = False
         self.skip = QPushButton("Skip", self)
-        self.textbox = QLineEdit("/home/ibrahim/audio/", self)
+        self.choose = QPushButton("Choose folder", self)
+        self.selected_folder = QLabel("")
+        self.playing = QLabel("")
         self.error_text = QLabel("")
         # create a timer to periodically check if the current audio has finished,
         # so we can automatically play the next track without blocking the GUI
@@ -38,31 +43,31 @@ class MainWindow(QMainWindow):
         grid = QGridLayout()
         central_widget.setLayout(grid)
 
-        grid.addWidget(self.textbox, 0, 0)
+        # grid.addWidget(self.textbox, 0, 0)
+        grid.addWidget(self.choose, 0, 0)
         grid.addWidget(self.play, 0, 1)
         grid.addWidget(self.skip, 0, 2)
-        grid.addWidget(self.error_text, 1, 0)
+        grid.addWidget(self.selected_folder, 2, 1)
+        grid.addWidget(self.playing, 4, 1)
+        grid.addWidget(self.error_text, 6, 1)
 
         grid.setAlignment(Qt.AlignTop)
-        self.error_text.setAlignment(Qt.AlignCenter)
 
-        self.textbox.setPlaceholderText("Enter absolute path to your audio folder here, to play audio from it")
-
-        self.setStyleSheet('''
-            QLineEdit {
-            }
+        # self.setStyleSheet('''
+        #     QLineEdit {
+        #     }
                            
-            QPushButton {
-            }
-        ''')
+        #     QPushButton {
+        #     }
+        # ''')
 
         self.play.setCursor(Qt.PointingHandCursor)
         self.skip.setCursor(Qt.PointingHandCursor)
+        self.choose.setCursor(Qt.PointingHandCursor)
+
         self.play.clicked.connect(self.playaudio)
         self.skip.clicked.connect(self.skip_audio)
-
-        # run playaudio() after hitting enter on textbox(LineEdit)
-        self.textbox.returnPressed.connect(self.playaudio)
+        self.choose.clicked.connect(self.choose_folder)
 
         # set the index to '0' so we don't have to use a for loop
         # and when audio file (at index 0) finishes playing, we do 'self.index += 1'
@@ -70,18 +75,25 @@ class MainWindow(QMainWindow):
         # i have it 1 here, to skip the first audio file, and start from 2nd
         self.index = 1
         pygame.mixer.init()
+    
 
+    def choose_folder(self):
+        folder = filedialog.askdirectory()
+        self.folder_path = folder + '/'
+        self.selected_folder.setText(f"Selected folder: {self.folder_path}")
     
     def playaudio(self):
         try:
+            if pygame.mixer.music.get_busy():
+                self.play.setText("Pause")
 
             if not pygame.mixer_music.get_busy() and not self.is_paused:
                 # Start / Play
-                self.folder = self.textbox.text().strip()
+                self.folder = self.folder_path
                 self.audio_files = os.listdir(self.folder)
                 self.timer.start(500)
                 self.play_next()
-                self.play.setText("Pause")
+                self.error_text.clear()
 
             elif not self.is_paused:
                 # Pause
@@ -98,20 +110,28 @@ class MainWindow(QMainWindow):
         except FileNotFoundError:
             self.error_text.setText("Folder not found")
         # get any other error and display it as readable error text
+        except pygame.error:
+            self.error_text.setText("Please select a folder with only audio files!")
         except Exception as e:
             self.error_text.setText(str(e))
 
 
     def play_next(self):
-        if self.index >= len(self.audio_files):
-            return
-        
-        file = self.audio_files[self.index]
-        pygame.mixer.music.load(self.folder + file)
-        pygame.mixer.music.play()
-        print(f"Playing Now: {file}")
+        try:
+            if self.index >= len(self.audio_files):
+                return
+            
+            file = self.audio_files[self.index]
+            pygame.mixer.music.load(self.folder + file)
+            pygame.mixer.music.play()
+            self.playing.setText(f"Playing Now: {file}")
+            print(f"Playing Now: {file}")
 
-        self.index += 1
+            self.index += 1
+        except pygame.error:
+            self.error_text.setText("Please select a folder with only audio files!")
+        except Exception as e:
+            self.error_text.setText(str(e))
 
 
     def check_audio(self):

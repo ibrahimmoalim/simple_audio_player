@@ -1,0 +1,2 @@
+dist/player filter=lfs diff=lfs merge=lfs -text
+build/player.pkg filter=lfs diff=lfs merge=lfs -text
