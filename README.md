@@ -1,12 +1,11 @@
 # Simple Audio Player (SAP)
 
-A lightweight standalone **audio player for Linux**. No Python installation is required — the app comes as a ready-to-run executable.
-
+A lightweight standalone **audio player for Linux**.
 ---
 
 ## Features
 
-* Play audio files (MP3, WAV, etc.)
+* Play audio files (MP3, WAV, etc.) from a manually chosen folder
 * Simple and intuitive interface
 * Lightweight and fast
 * Creates a desktop menu icon for easy launching
