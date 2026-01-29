@@ -1,6 +1,6 @@
 #!/bin/bash
 
-APP_NAME="SAP"
+APP_NAME="sap"
 
 # Paths
 BINARY_SRC="./dist/$APP_NAME"
@@ -8,7 +8,7 @@ ICON_SRC="./app_icon.png"
 
 # Destination paths
 BIN_DIR="$HOME/.local/bin"
-ICON_DIR="$HOME/.local/share/icons"
+ICON_DIR="$HOME/.local/share/icons/hicolor/256x256/apps/sap.png"
 DESKTOP_DIR="$HOME/.local/share/applications"
 DESKTOP_FILE="$DESKTOP_DIR/$APP_NAME.desktop"
 
@@ -26,11 +26,12 @@ cp "$ICON_SRC" "$ICON_DIR/"
 cat > "$DESKTOP_FILE" <<EOL
 [Desktop Entry]
 Name=$APP_NAME
-Comment= Simple Audio Player app made with python, made by ibrahimmoalim@github
+Comment=Simple Audio Player app made with python, made by ibrahimmoalim@github
 Exec=$BIN_DIR/$APP_NAME
-Icon=$ICON_DIR/$(basename $ICON_SRC)
+Icon=sap
 Type=Application
-Categories=AudioPlayer;
+Categories=AudioVideo;
+Terminal=false
 EOL
 
 # Make the .desktop file executable
