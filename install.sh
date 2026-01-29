@@ -26,7 +26,7 @@ cp "$ICON_SRC" "$ICON_DIR/"
 cat > "$DESKTOP_FILE" <<EOL
 [Desktop Entry]
 Name=$APP_NAME
-Comment=Simple Audio Player app made with python, made by ibrahimmoalim@github
+Comment=Simple Audio Player app made with python, by ibrahimmoalim@github
 Exec=$BIN_DIR/$APP_NAME
 Icon=sap
 Type=Application
