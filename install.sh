@@ -8,7 +8,7 @@ ICON_SRC="./app_icon.png"
 
 # Destination paths
 BIN_DIR="$HOME/.local/bin"
-ICON_DIR="$HOME/.local/share/icons/hicolor/256x256/apps/sap.png"
+ICON_DIR="$HOME/.local/share/icons/app_icon.png"
 DESKTOP_DIR="$HOME/.local/share/applications"
 DESKTOP_FILE="$DESKTOP_DIR/$APP_NAME.desktop"
 
@@ -28,10 +28,11 @@ cat > "$DESKTOP_FILE" <<EOL
 Name=$APP_NAME
 Comment=Simple Audio Player app made with python, by ibrahimmoalim@github
 Exec=$BIN_DIR/$APP_NAME
-Icon=sap
+Icon=$ICON_DIR
 Type=Application
-Categories=AudioVideo;
+Categories=AudioVideo;Player;
 Terminal=false
+StartupWMClass=sap
 EOL
 
 # Make the .desktop file executable
