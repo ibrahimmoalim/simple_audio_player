@@ -46,19 +46,19 @@ The script will:
 * Create a `.desktop` file in `~/.local/share/applications`
 * Update the desktop database so you can launch the app from your menu
 
-You can now search for **SAP** in your application menu and run it.
+You can now search for **sap** in your application menu and run it.
 
 ---
 
 ## Running the App
 
-You can launch SAP in two ways:
+You can launch **sap** in two ways:
 
  - **From the application menu using the icon created by the install script**
 
  - **Or directly from the terminal**
 ```bash
-~/.local/bin/SAP
+~/.local/bin/sap
 ```
 
 ---
