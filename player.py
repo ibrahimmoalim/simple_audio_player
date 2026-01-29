@@ -26,7 +26,7 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.setWindowTitle('audioplayer')
         self.setGeometry(700, 300, 500, 300)
-        self.setWindowIcon(QIcon(f'{BASE_DIR}/app_icon.png'))
+        self.setWindowIcon(QIcon(f'{BASE_DIR}/favicon.ico'))
         self.folder_path = ""
         self.choose = QPushButton("Choose folder", self)
         self.play = QPushButton("Play", self)
