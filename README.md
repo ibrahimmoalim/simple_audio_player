@@ -15,7 +15,7 @@ A lightweight standalone **audio player for Linux**. No Python installation is r
 
 ## Installation
 
-1. **Download the latest release** from the [Releases page](https://github.com/ibrahimmoalim/simple-audio-player/releases).
+1. **Download the latest release** from the [Releases page](https://github.com/ibrahimmoalim/simple_audio_player/releases/latest).
 
 2. **Extract the downloaded ZIP file**:
 
