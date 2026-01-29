@@ -18,9 +18,9 @@ A lightweight standalone **audio player for Linux**.
 
 2. **Extract the downloaded ZIP file**:
 
-# Unzip the release into a folder
+# Unzip into sap (folder)
 ```bash
-unzip sap.zip -d sap
+unzip sap.zip
 ```
 
 # Navigate into the folder
