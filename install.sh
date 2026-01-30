@@ -3,12 +3,13 @@
 APP_NAME="sap"
 
 # Paths
-BINARY_SRC="./dist/$APP_NAME"
-ICON_SRC="./app_icon.png"
+BINARY_SRC="dist/$APP_NAME"
+ICON_SRC="app_icon.png"
 
 # Destination paths
-BIN_DIR="$HOME/.local/bin"
-ICON_DIR="$HOME/.local/share/icons/app_icon.png"
+BIN_DIR="$HOME/.local/bin/"
+ICON_DIR="$HOME/.local/share/icons/"
+ICON_DEST="$HOME/.local/share/icons/$ICON_SRC"
 DESKTOP_DIR="$HOME/.local/share/applications"
 DESKTOP_FILE="$DESKTOP_DIR/$APP_NAME.desktop"
 
@@ -16,11 +17,11 @@ DESKTOP_FILE="$DESKTOP_DIR/$APP_NAME.desktop"
 mkdir -p "$BIN_DIR" "$ICON_DIR" "$DESKTOP_DIR"
 
 # Copy binary
-cp "$BINARY_SRC" "$BIN_DIR/"
+cp "$BINARY_SRC" "$BIN_DIR"
 chmod +x "$BIN_DIR/$APP_NAME"
 
 # Copy icon
-cp "$ICON_SRC" "$ICON_DIR"
+cp "$ICON_SRC" "$ICON_DEST"
 
 # Create .desktop file with absolute paths
 cat > "$DESKTOP_FILE" <<EOL
@@ -28,7 +29,7 @@ cat > "$DESKTOP_FILE" <<EOL
 Name=$APP_NAME
 Comment=Simple Audio Player app made with python, by ibrahimmoalim@github
 Exec=$BIN_DIR/$APP_NAME
-Icon=$ICON_DIR
+Icon=$ICON_DEST
 Type=Application
 Categories=AudioVideo;Player;
 Terminal=false
