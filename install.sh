@@ -20,7 +20,7 @@ cp "$BINARY_SRC" "$BIN_DIR/"
 chmod +x "$BIN_DIR/$APP_NAME"
 
 # Copy icon
-cp "$ICON_SRC" "$ICON_DIR/"
+cp "$ICON_SRC" "$ICON_DIR"
 
 # Create .desktop file with absolute paths
 cat > "$DESKTOP_FILE" <<EOL
