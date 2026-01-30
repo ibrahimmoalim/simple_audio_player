@@ -162,16 +162,21 @@ class MainWindow(QMainWindow):
 
     def play_next(self):
         try:
-            if self.index >= len(self.audio_files):
-                return
+            # uncomment lines below to disable looping
+            # if self.index >= len(self.audio_files):
+            #     return
             
             file = self.audio_files[self.index]
             pygame.mixer.music.load(self.folder + file)
             pygame.mixer.music.play()
             self.playing.setText(f"Playing Now: {file}")
             print(f"Playing Now: {file}")
-
+            
             self.index += 1
+
+            if self.index >= len(self.audio_files):
+                self.index = 0
+            
         except pygame.error:
             self.error_text.setText("Please select a folder with only audio files!")
         except Exception as e:
@@ -197,10 +202,8 @@ class MainWindow(QMainWindow):
             self.play_next()
         else:
             self.error_text.setText("No audio playing!")
-        
-        if pygame.mixer.music.get_busy() and self.index == len(self.audio_files):
-            self.skip.setDisabled(True)
-    
+
+  
     def stop_audio(self):
         if not pygame.mixer.get_init():
             self.error_text.setText("No audio playing!")
@@ -210,6 +213,7 @@ class MainWindow(QMainWindow):
             pygame.mixer.music.stop()
             self.timer.stop()
             self.index = 0
+            self.playing.clear()
             self.play.setText("Play")
             self.play.setStyleSheet("background-color: lime;")
         else:
