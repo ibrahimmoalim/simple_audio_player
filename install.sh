@@ -42,5 +42,8 @@ chmod +x "$DESKTOP_FILE"
 # Update desktop database
 update-desktop-database "$DESKTOP_DIR" 2>/dev/null
 
+# Create an alias to run the app easily from terminal
+echo alias sap="'setsid ~/.local/bin/sap >/dev/null 2>&1 &'" >> .bashrc
+
 echo "$APP_NAME has been installed!"
 echo "You can now search for $APP_NAME in your application menu."
