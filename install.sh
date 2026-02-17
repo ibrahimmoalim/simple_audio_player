@@ -3,7 +3,7 @@
 APP_NAME="sap"
 
 # Paths
-BINARY_SRC="dist/$APP_NAME"
+BINARY_SRC="$APP_NAME"
 ICON_SRC="app_icon.png"
 
 # Destination paths
@@ -44,7 +44,7 @@ update-desktop-database "$DESKTOP_DIR" 2>/dev/null
 
 # Create an alias to run the app easily from terminal
 grep -qxF "alias sap='setsid ~/.local/bin/sap >/dev/null 2>&1 &'" ~/.bashrc || \
-echo "alias sap='setsid ~/.local/bin/sap >/dev/null 2>&1 &'" >> ~/.bashrc
+printf "\nalias sap='setsid ~/.local/bin/sap >/dev/null 2>&1 &'\n" >> ~/.bashrc
 
 echo "$APP_NAME has been installed!"
 echo "You can now search for $APP_NAME in your application menu."
