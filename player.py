@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle('audioplayer')
+        self.setWindowTitle('SAP')
         self.setGeometry(700, 300, 500, 300)
         self.setWindowIcon(QIcon(f'{BASE_DIR}/favicon.ico'))
         self.folder_path = ""
@@ -126,7 +126,7 @@ class MainWindow(QMainWindow):
     
     def play_audio(self):
         try:
-
+            
             pygame.mixer.init()
             self.folder = self.folder_path
             self.audio_files = os.listdir(self.folder)
@@ -170,7 +170,6 @@ class MainWindow(QMainWindow):
             pygame.mixer.music.load(self.folder + file)
             pygame.mixer.music.play()
             self.playing.setText(f"Playing Now: {file}")
-            print(f"Playing Now: {file}")
             
             self.index += 1
 
@@ -179,6 +178,7 @@ class MainWindow(QMainWindow):
             
         except pygame.error:
             self.error_text.setText("Please select a folder with only audio files!")
+            self.playing.clear()
         except Exception as e:
             self.error_text.setText(str(e))
 
