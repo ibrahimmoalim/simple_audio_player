@@ -14,11 +14,12 @@ A lightweight standalone **audio player for Linux/Windows**.
 
 ## Features
 
-* Play audio files (MP3, WAV, etc.) from a manually chosen folder
+* Play audio files (MP3, WAV, etc.) from a *manually chosen folder*
+* The folder should contain *only audio files*
 * Simple and intuitive interface
 * Lightweight and fast
-* Supports only play, pause/resume, skip, and stop functions
-* Does not include a slider to jump to a specific timestamp in the audio
+* Supports *only play, pause/resume, skip, and stop* functions
+* Does not include a *slider* to jump to a *specific timestamp* in the audio
 
 ---
 
