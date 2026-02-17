@@ -22,29 +22,29 @@ A lightweight standalone **audio player for Linux/Windows**.
 
 ---
 
-## Installation for Linux
+# Installation for Linux
 
 1. **Download the latest release** from the [Releases page](https://github.com/ibrahimmoalim/simple_audio_player/releases/tag/v2.3.1)
 
 2. **Extract the downloaded ZIP file**:
 
-# Unzip into sap (folder)
+## Unzip into sap (folder)
 ```bash
 unzip sap.zip
 ```
 
-# Navigate into the folder
+## Navigate into the folder
 ```bash
 cd sap
 ```
 
 3. **Run the install script**:
 
-# Make the install script executable
+## Make the install script executable
 ```bash
 chmod +x install.sh
 ```
-# Run the install script to set up the binary and icon
+## Run the install script to set up the binary and icon
 ```bash
 ./install.sh
 ```
@@ -60,7 +60,7 @@ You can now search for **sap** in your application menu and run it.
 
 ---
 
-## Running the App
+## Running the App on Linux
 
 You can launch **sap** in two ways:
 
@@ -73,7 +73,7 @@ sap
 
 ---
 
-## Installation for Windows
+# Installation for Windows
 
 1. **Download the latest release** from the [Releases page](https://github.com/ibrahimmoalim/simple_audio_player/releases/tag/v1.0-windows)
 
