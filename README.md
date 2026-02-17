@@ -1,6 +1,15 @@
 # Simple Audio Player (SAP)
 
-A lightweight standalone **audio player for Linux**.
+A lightweight standalone **audio player for Linux/Windows**.
+
+---
+
+## Table of Contents
+
+* [Features](#features)
+* [Installation for Linux](#installation-for-linux)
+* [Installation for Windows](#installation-for-windows)
+
 ---
 
 ## Features
@@ -8,13 +17,14 @@ A lightweight standalone **audio player for Linux**.
 * Play audio files (MP3, WAV, etc.) from a manually chosen folder
 * Simple and intuitive interface
 * Lightweight and fast
-* Creates a desktop menu icon for easy launching
+* Supports only play, pause/resume, skip, and stop functions
+* Does not include a slider to jump to a specific timestamp in the audio
 
 ---
 
-## Installation
+## Installation for Linux
 
-1. **Download the latest release** from the [Releases page](https://github.com/ibrahimmoalim/simple_audio_player/releases/latest).
+1. **Download the latest release** from the [Releases page](https://github.com/ibrahimmoalim/simple_audio_player/releases/tag/v2.3.1)
 
 2. **Extract the downloaded ZIP file**:
 
@@ -58,7 +68,17 @@ You can launch **sap** in two ways:
 
  - **Or directly from the terminal**
 ```bash
-~/.local/bin/sap
+sap
 ```
+
+---
+
+## Installation for Windows
+
+1. **Download the latest release** from the [Releases page](https://github.com/ibrahimmoalim/simple_audio_player/releases/tag/v1.0-windows)
+
+2. **Extract the downloaded ZIP file**
+
+3. **Run the SAP application**
 
 ---
