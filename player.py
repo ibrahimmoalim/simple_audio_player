@@ -33,7 +33,7 @@ class MainWindow(QMainWindow):
         self.pause = QPushButton("Pause", self)
         self.is_paused = False
         self.skip = QPushButton("Skip", self)
-        self.stop = QPushButton("Stop", self)
+        # self.stop = QPushButton("Stop", self)
         self.selected_folder = QLabel("")
         self.playing = QLabel("")
         self.error_text = QLabel("")
@@ -56,7 +56,7 @@ class MainWindow(QMainWindow):
         grid.addWidget(self.play, 0, 1)
         grid.addWidget(self.pause, 0, 2)
         grid.addWidget(self.skip, 0, 3)
-        grid.addWidget(self.stop, 0, 4)
+        # grid.addWidget(self.stop, 0, 4)
         grid.addWidget(self.selected_folder, 2, 1)
         grid.addWidget(self.playing, 4, 1)
         grid.addWidget(self.error_text, 6, 1)
@@ -65,7 +65,7 @@ class MainWindow(QMainWindow):
         self.play.setProperty('class', 'play')
         self.pause.setProperty('class', 'pause')
         self.skip.setProperty('class', 'skip')
-        self.stop.setProperty('class', 'stop')
+        # self.stop.setProperty('class', 'stop')
 
         grid.setAlignment(Qt.AlignTop)
 
@@ -107,12 +107,12 @@ class MainWindow(QMainWindow):
         self.play.setCursor(Qt.PointingHandCursor)
         self.pause.setCursor(Qt.PointingHandCursor)
         self.skip.setCursor(Qt.PointingHandCursor)
-        self.stop.setCursor(Qt.PointingHandCursor)
+        # self.stop.setCursor(Qt.PointingHandCursor)
 
         self.play.clicked.connect(self.play_audio)
         self.pause.clicked.connect(self.pause_audio)
         self.skip.clicked.connect(self.skip_audio)
-        self.stop.clicked.connect(self.stop_audio)
+        # self.stop.clicked.connect(self.stop_audio)
         self.choose.clicked.connect(self.choose_folder)
 
 
@@ -209,15 +209,15 @@ class MainWindow(QMainWindow):
             self.error_text.setText("No audio playing!")
             return
         
-        if pygame.mixer.music.get_busy():
-            pygame.mixer.music.stop()
-            self.timer.stop()
-            self.index = 0
-            self.playing.clear()
-            self.play.setText("Play")
-            self.play.setStyleSheet("background-color: lime;")
-        else:
-            self.error_text.setText("No audio playing!")
+        # if pygame.mixer.music.get_busy():
+        #     pygame.mixer.music.stop()
+        #     self.timer.stop()
+        #     self.index = 0
+        #     self.playing.clear()
+        #     self.play.setText("Play")
+        #     self.play.setStyleSheet("background-color: lime;")
+        # else:
+        #     self.error_text.setText("No audio playing!")
     
 
 def main():
