@@ -18,7 +18,12 @@ from PyQt5.QtCore import Qt, QTimer
 # you cannot change them later
 # "Path(__file__).resolve().parent" gets the absolute directory of this script
 # (safe for loading assets like icons)
-BASE_DIR = Path(__file__).resolve().parent
+# BASE_DIR = Path(__file__).resolve().parent
+
+linux_icon = os.path.expanduser("~/.local/share/icons/app_icon.png")
+
+# Supported audio extensions
+SUPPORTED_FORMATS = ('.mp3', '.aac', '.aif', '.m4a', '.opus', '.wav', '.wma', '.ogg', '.au')
 
 
 class MainWindow(QMainWindow):
@@ -26,9 +31,12 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.setWindowTitle('SAP')
         self.setGeometry(700, 300, 500, 300)
-        self.setWindowIcon(QIcon(f'{BASE_DIR}/favicon.ico'))
+        if os.path.exists(linux_icon):
+            self.setWindowIcon(QIcon(linux_icon))
+        else:
+            self.setWindowIcon(QIcon(f'{BASE_DIR}/app_icon.png'))
         self.folder_path = ""
-        self.choose = QPushButton("Choose folder", self)
+        self.choose = QPushButton("Choose audio folder (files won't be visible)", self)
         self.play = QPushButton("Play", self)
         self.pause = QPushButton("Pause", self)
         self.is_paused = False
@@ -120,7 +128,9 @@ class MainWindow(QMainWindow):
 
             pygame.mixer.init()
             self.folder = self.folder_path
-            self.audio_files = os.listdir(self.folder)
+            self.audio_files = [f for f in os.listdir(self.folder)
+                                if f.lower().endswith(SUPPORTED_FORMATS)]
+
             # set the index to '0' so we don't have to use a for loop
             # and when audio file (at index 0) finishes playing, we do 'self.index += 1'
             # to play next
@@ -131,7 +141,6 @@ class MainWindow(QMainWindow):
 
         except FileNotFoundError:
             self.error_text.setText("Folder not found")
-        # get any other error and display it as readable error text
 
     def pause_audio(self):
         if not pygame.mixer.get_init():
@@ -165,8 +174,8 @@ class MainWindow(QMainWindow):
             if self.index >= len(self.audio_files):
                 self.index = 0
 
-        except pygame.error:
-            self.error_text.setText("Please select a folder with only audio files!")
+        except IndexError:
+            self.error_text.setText("No audio files in folder!")
             self.playing.clear()
 
 
