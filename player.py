@@ -3,6 +3,7 @@ warnings.filterwarnings("ignore", category=RuntimeWarning)
 
 import sys
 import os
+os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 from pathlib import Path
 
 import pygame
