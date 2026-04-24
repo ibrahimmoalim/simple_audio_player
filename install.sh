@@ -2,8 +2,9 @@
 
 APP_NAME="sap"
 
-# Paths
+# Src Paths
 BINARY_SRC="$APP_NAME"
+DEPENDENCIES_SRC="_internal"
 ICON_SRC="app_icon.png"
 
 # Destination paths
@@ -16,8 +17,9 @@ DESKTOP_FILE="$DESKTOP_DIR/$APP_NAME.desktop"
 # Create necessary directories
 mkdir -p "$BIN_DIR" "$ICON_DIR" "$DESKTOP_DIR"
 
-# Copy binary
+# Copy binary and dependencies
 cp "$BINARY_SRC" "$BIN_DIR"
+cp -r "$DEPENDENCIES_SRC" "$BIN_DIR"
 chmod +x "$BIN_DIR/$APP_NAME"
 
 # Copy icon
