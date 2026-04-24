@@ -24,7 +24,7 @@ A lightweight standalone **audio player for Linux/Windows**.
 
 # Installation for Linux
 
-1. **Download the latest release** from the [Releases page](https://github.com/ibrahimmoalim/simple_audio_player/releases/tag/v2.4)
+1. **Download the latest release** from the [Releases page](https://github.com/ibrahimmoalim/simple_audio_player/releases/tag/v2.5)
 
 2. **Extract the downloaded ZIP file**:
 
